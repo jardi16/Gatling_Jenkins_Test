@@ -15,17 +15,17 @@ class CheckResponseCode extends Simulation {
 
     .exec(http("Get all video games - 1st call")
       .get("/videogame")
-      .check(status.is(200)))
+      .check(status.is(200))) //.check() nos sirve para validar el statusCode de una respuesta
     .pause(5)
 
     .exec(http("Get specific game")
       .get("/videogame/1")
-      .check(status.in(200 to 210)))
+      .check(status.in(200 to 210))) //Tambien podremos validar el statuscode dentro de un rango
     .pause(1, 10)
 
     .exec(http("Get all video games - 2nd call")
       .get("/videogame")
-      .check(status.not(404), status.not(500)))
+      .check(status.not(404), status.not(500))) //Tambien podemos validar que no devuelva ciertos statuscode
     .pause(3000.milliseconds)
 
   setUp(
