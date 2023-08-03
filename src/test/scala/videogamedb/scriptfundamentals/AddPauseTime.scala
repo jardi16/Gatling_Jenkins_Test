@@ -18,7 +18,7 @@ class AddPauseTime extends Simulation {
     .pause(5) //Podemos agregar pausas directamente con valor. Por defecto es tomado en milisegundos
 
     .exec(http("Get specific game")
-    .get("/videogame/1"))
+      .get("/videogame/1"))
     .pause(1, 10) //Tambien podemos manejar rangos entre varios valores. aqui pausara en un valor aleatorio entre 1 a 10 segundos
 
     .exec(http("Get all video games - 2nd call")
