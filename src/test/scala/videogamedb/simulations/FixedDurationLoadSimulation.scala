@@ -23,8 +23,8 @@ class FixedDurationLoadSimulation extends Simulation {
   }
 
   val scn = scenario("Fixed Duration Load Simulation")
-    .forever {
-      exec(getAllVideoGames())
+    .forever { //Indicamos que nuestro escenario se ejecutara por siempre hasta que alcance la duracion maxima establecida
+      exec(getAllVideoGames()) //Importante en este caso quitar el punto del primer exec
         .pause(5)
         .exec(getSpecificGame())
         .pause(5)
@@ -37,6 +37,6 @@ class FixedDurationLoadSimulation extends Simulation {
       atOnceUsers(10),
       rampUsers(20).during(30)
     ).protocols(httpProtocol)
-  ).maxDuration(60)
+  ).maxDuration(60) //Indicamos la duracion maxima del escenario con los usuarios concurrentes indicados
 
 }

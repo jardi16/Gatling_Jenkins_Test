@@ -32,8 +32,8 @@ class RampUsersLoadSimulation extends Simulation {
   setUp(
     scn.inject(
       nothingFor(5),
-      constantUsersPerSec(10).during(10),
-      rampUsersPerSec(1).to(5).during(20)
+      constantUsersPerSec(10).during(10), //Agrega constantemente 10 usuarios cada segundo durante 10 segundos
+      rampUsersPerSec(1).to(5).during(20) //Agrega en un rango de usuarios entre 1 y 5 durante 20 segundos
     ).protocols(httpProtocol)
   )
 

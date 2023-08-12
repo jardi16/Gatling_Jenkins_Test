@@ -31,9 +31,9 @@ class BasicLoadSimulation extends Simulation {
 
   setUp(
     scn.inject(
-      nothingFor(5),
-      atOnceUsers(5),
-      rampUsers(10).during(10)
+      nothingFor(5), //No se realizan consumos de los servicios por el tiempo determinado
+      atOnceUsers(5), //Se consumen los servicios con cinco usuarios concurrentes
+      rampUsers(10).during(10) //Se agregan otros diez usuarios de forma escalonada durante 10 segundos
     ).protocols(httpProtocol)
   )
 
