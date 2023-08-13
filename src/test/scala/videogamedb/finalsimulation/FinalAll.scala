@@ -57,7 +57,7 @@ class FinalAll extends Simulation{
 
   setUp(
     scn.inject(
-      nothingFor(5),
+      nothingFor(10),
       atOnceUsers(USERS),
       constantUsersPerSec(USERSPERSEC).during(TESTTIME)
     ).protocols(httpProtocol)
