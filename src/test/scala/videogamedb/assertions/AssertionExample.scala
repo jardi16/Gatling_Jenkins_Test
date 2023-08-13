@@ -3,7 +3,7 @@ package videogamedb.finalsimulation
 import io.gatling.http.Predef._
 import io.gatling.core.Predef._
 
-class FinalAll extends Simulation{
+class AssertionExample extends Simulation{
 
   val httpProtocol = http.baseUrl("https://www.videogamedb.uk")
     .acceptHeader("application/json")
@@ -27,14 +27,14 @@ class FinalAll extends Simulation{
 
   def createGame() = {
     feed(data)
-    .exec(
-      http("create new game")
-        .post("/api/videogame")
-        .header("Authorization", "Bearer #{jwtToken}")
-        .body(ElFileBody("bodies/newGameTemplate.json")).asJson
-        .check(status.in(200 to 204))
-        .check(bodyString.saveAs("createResponseBody"))
-    ).exec{session => println(session("createResponseBody").as[String]);session}
+      .exec(
+        http("create new game")
+          .post("/api/videogame")
+          .header("Authorization", "Bearer #{jwtToken}")
+          .body(ElFileBody("bodies/newGameTemplate.json")).asJson
+          .check(status.in(200 to 204))
+          .check(bodyString.saveAs("createResponseBody"))
+      ).exec{session => println(session("createResponseBody").as[String]);session}
   }
 
   def updateGame() = {
@@ -64,4 +64,5 @@ class FinalAll extends Simulation{
   ).assertions(
     global.responseTime.max.lt(400), //Indicamos que el tiempo de espera debe ser menor a 400 mlls, sino fallara el test
     global.successfulRequests.percent.gt(99) //La candidad de request exitosos debe ser mayor al 99%
+  )
 }
